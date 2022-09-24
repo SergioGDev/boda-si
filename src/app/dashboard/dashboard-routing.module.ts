@@ -15,7 +15,7 @@ const routes: Routes = [
             { path: 'distribucion-mesas', component: DistribucionMesasComponent },
             { path: 'gestion-invitados', component: GestionInvitadosComponent },
             { path: 'ubicaciones', component: UbicacionesComponent },
-            { path: '**', redirectTo: 'galeria' }
+            { path: '**', redirectTo: 'ubicaciones' }
             //{ path: 'path/:routeParam', component: MyComponent },
             //{ path: 'staticPath', component: ... },
             //{ path: '**', component: ... },
