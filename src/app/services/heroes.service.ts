@@ -18,7 +18,6 @@ export class HeroesService {
   }
 
   obtenerListadoHeroes(): Observable<any> {
-    console.log(`${environment.backendUrl}/${this.urlHeroes}`)
     return this.http.get<any>(`${environment.backendUrl}/${this.urlHeroes}`);
   }
 

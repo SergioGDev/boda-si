@@ -21,7 +21,6 @@ export class InvitadosService {
   ) { }
 
   obtenerListadoInvitados(): Observable<any> {
-    console.log(`${environment.backendUrl}/${this.urlInvitado}`)
     return this.http.get(`${environment.backendUrl}/${this.urlInvitado}`);
   }
 

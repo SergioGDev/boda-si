@@ -25,7 +25,6 @@ export class MesasService {
   }
 
   obtenerListadoMesas(): Observable<any> {
-    console.log(`${environment.backendUrl}/${this.urlMesa}`)
     return this.http.get<any>(`${environment.backendUrl}/${this.urlMesa}`);
   }
 
