@@ -60,50 +60,34 @@ export class GestionInvitadosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargandoInvitados = true;
+    this.invitadosService.obtenerListadoInvitados().pipe(
+      switchMap( resp => {
+        this.vInvitados = resp;
+        return this.mesasService.obtenerListadoMesas();
+      }),
+      switchMap( resp => {
+        this.vMesas = resp;
+        return this.heroesService.obtenerListadoHeroes();
+      })
+    ).subscribe( resp => {
+      this.vHeroes = resp;
 
-    this.invitadosService.obtenerListadoInvitados().subscribe(
-      resp => console.log(resp),
-      error => console.log('ERROR:', error)
-    )
+      this.vMesas.forEach( mesa => {
+        const heroe = this.vHeroes.find( heroe => heroe._id === mesa.heroe );
+        mesa.heroeSchema = heroe;
+      })
 
-    this.mesasService.obtenerListadoMesas().subscribe(
-      resp => console.log(resp),
-      error => console.log('ERROR:', error) 
-    )
+      this.vInvitados.forEach( invitado => {
+        const mesa = this.vMesas.find( mesa => mesa._id === invitado.mesa );
+        invitado.mesaSchema = mesa;
+      })
 
-    this.heroesService.obtenerListadoHeroes().subscribe(
-      resp => console.log(resp),
-      error => console.log('ERROR:', error)
-    )
+      this.page = 0;
+      this.maxPaginas = Math.floor(this.vInvitados.length / this.pageSize);
 
-    // this.invitadosService.obtenerListadoInvitados().pipe(
-    //   switchMap( resp => {
-    //     this.vInvitados = resp;
-    //     return this.mesasService.obtenerListadoMesas();
-    //   }),
-    //   switchMap( resp => {
-    //     this.vMesas = resp;
-    //     return this.heroesService.obtenerListadoHeroes();
-    //   })
-    // ).subscribe( resp => {
-    //   this.vHeroes = resp;
-
-    //   this.vMesas.forEach( mesa => {
-    //     const heroe = this.vHeroes.find( heroe => heroe._id === mesa.heroe );
-    //     mesa.heroeSchema = heroe;
-    //   })
-
-    //   this.vInvitados.forEach( invitado => {
-    //     const mesa = this.vMesas.find( mesa => mesa._id === invitado.mesa );
-    //     invitado.mesaSchema = mesa;
-    //   })
-
-    //   this.page = 0;
-    //   this.maxPaginas = Math.floor(this.vInvitados.length / this.pageSize);
-
-    //   this.asignarVInvitados();
-    //   this.cargandoInvitados = false;
-    // })
+      this.asignarVInvitados();
+      this.cargandoInvitados = false;
+    })
 
   }
 
