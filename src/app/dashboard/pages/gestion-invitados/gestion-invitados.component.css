@@ -1,0 +1,301 @@
+.container {
+    font-family: 'Crimson Text', serif;
+    padding: 40px;
+    min-width: calc(100% - 80px);
+    max-width: calc(100% - 80px);
+    min-height: calc(100% - 80px);
+    background-color: var(--tono6);
+}
+
+.boton-nuevo-invitado {
+    border: 2px solid var(--tono1);
+    border-radius: 3px;
+    padding: 5px 30px;
+    font-family: 'Crimson Text', serif;
+    font-size: 12pt;
+    box-shadow: 1px 2px 3px 0px var(--tono3-transparente);
+    background: var(--tono2);
+    color: var(--tono6);
+    cursor: pointer;
+}
+
+.subtitle-container {
+    font-weight: 900;
+    text-shadow: 3px 2px 4px var(--tono-box-shadow);
+}
+
+.titulo-gestion-invitados {
+    width: 100%;
+    height: 250px;
+    background-image: url(../../../../assets/santuario-puerto-1.jpeg);
+    background-position: center center;
+    background-size: cover;
+    font-family: 'Square Peg', cursive;
+}
+
+.titulo-gestion-invitados .cortina {
+    width: 100%;
+    height: 100%;
+    background-color: #00000090;
+}
+
+.titulo-gestion-invitados .cortina .texto-titulo {
+    color: white;
+    text-shadow: 2px 2px 3px #ffffff80;
+    font-size: 60pt;
+    width: 100%;
+    height: 100%;
+}
+
+.subtitle-container {
+    font-size: 18pt;
+    margin: 5px 20px;
+}
+
+.boton-cargar-container {
+    margin-right: 10%;
+    margin:10px 10% 0px 0px;
+    text-align: right;
+}
+
+.table-content {
+    margin: 25px 10% 10px 10%;
+}
+
+.table-content table {
+    width: 100%;
+    background-color: var(--tono2);
+    border-radius: 3px;
+    box-shadow: 2px 2px 10px black;
+    margin: 15px 0px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table-content table th {
+    border-bottom: 2px solid var(--tono6);
+    text-align: start;
+    padding: 15px 10px;
+    background-color: var(--tono1);
+    font-size: 15pt;
+    font-weight: 900;
+}
+
+.table-content table th .icon-order {
+    margin-left: 10px;
+}
+
+.table-content table th .icon-order.no-order {
+    display: none;
+}
+
+.table-content table th .icon-order.ascendente {
+    transform: rotateZ(-90deg)
+}
+
+.table-content table th .icon-order.descendente {
+    transform: rotateZ(90deg)
+}
+
+.table-content table td {
+    border-right: 1px solid var(--tono5-transparente);
+    border-bottom: 1px solid var(--tono5-transparente);
+    max-width: 500px;
+    color: black !important;
+    text-align: start;
+}
+
+.table-content table td {
+    padding: 2px 10px;
+}
+
+.table-content table td:last-child {
+    border-right: 0;
+}
+
+.table-content table tr:nth-child(odd) {
+    background-color: var(--tono7);
+}
+
+.table-content table tr:nth-child(even) {
+    background-color: var(--tono8);
+}
+
+.table-content table tr#row-nueva-seccion td {
+    padding: 0px 10px 8px 10px;
+    text-align: center;
+}
+
+.edit-button {
+    color: var(--tono2);
+}
+
+.delete-button {
+    color: red;
+}
+
+input {
+    color: var(--tono1);
+}
+
+input::placeholder {
+    color: var(--tono1-transparente);
+}
+
+.table-content table td, .table-content table th {
+    color: white;
+}
+
+.table-content table td {
+    font-size: 13pt;
+}
+
+.control-table {
+    margin: 25px 10px;
+    font-size: 14pt;
+    text-shadow: 1px 1px 1px #00000030;
+}
+
+.control-table-button {
+    padding: 10px 15px;
+    margin: 0px 20px;
+    border: 2px solid var(--tono5-transparente);
+    background: var(--tono1);
+    box-shadow: 1px 2px 3px var(--tono1-transparente);
+    border-radius: 3px;
+    color: var(--tono7);
+    cursor: pointer;
+}
+
+.control-table-button:hover {
+    background-color: var(--tono2);
+    transform: translateY(-1px);
+    box-shadow: 2px 3px 5px var(--tono1-transparente);
+}
+
+.control-table-button:active {
+    background-color: var(--tono1);
+}
+
+.dialog-edit-invitado,
+.dialog-eliminar-invitado,
+.dialog-edit-mesa {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--tono5-transparente);
+    backdrop-filter: blur(10px);
+    z-index: 50;
+    transition: 0.3s;
+}
+
+.dialog-edit-invitado .content-dialog,
+.dialog-edit-mesa .content-dialog {
+    width: 750px;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 1px 2px 3px var(--tono1-transparente);
+    background-color: var(--tono8);
+}
+
+.dialog-eliminar-invitado .content-dialog {
+    width: 600px;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 1px 2px 3px var(--tono1-transparente);
+    background-color: var(--tono8);
+}
+
+.dialog-edit-invitado .content-dialog .dialog-form,
+.dialog-eliminar-invitado .content-dialog .dialog-form,
+.dialog-edit-mesa .content-dialog .dialog-form {
+    padding: 20px;
+}
+
+.dialog-edit-invitado .content-dialog .dialog-form>div,
+.dialog-eliminar-invitado .content-dialog .dialog-form>div,
+.dialog-edit-mesa .content-dialog .dialog-form>div {
+    margin: 10px 0px;
+}
+
+.dialog-edit-invitado .content-dialog .dialog-form .title-dialog,
+.dialog-eliminar-invitado .content-dialog .dialog-form .title-dialog,
+.dialog-edit-mesa .content-dialog .dialog-form .title-dialog {
+    color: var(--tono1);
+    text-shadow: 1px 2px 3px var(--tono1-transparente);
+    font-size: 22pt;
+    margin-bottom: 40px;
+    font-family: 'Crimson Text', serif;
+}
+
+.dialog-edit-invitado .content-dialog .dialog-form .botonera,
+.dialog-eliminar-invitado .content-dialog .dialog-form .title-dialog .botonera,
+.dialog-edit-mesa .content-dialog .dialog-form .title-dialog .botonera {
+    margin: 20px 5px 10px 5px;
+}
+
+@media screen and (max-width: 599px) {
+
+    .table-content table td,
+    .table-content table th {
+        font-size: 11pt;
+    }
+
+    .edit-button, .delete-button {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        font-size: 12pt;
+    }
+    
+    .container {
+        padding: 40px 2px;
+        min-width: calc(100% - 4px);
+        max-width: calc(100% - 4px);
+        min-height: calc(100% - 80px);
+    }
+
+    .table-content {
+        margin: 25px 1px 10px 1px;
+    }
+
+    .boton-cargar-container {
+        margin: 30px 1px 0px 1px;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 959px) {
+    .container {
+        padding: 40px 5px;
+        min-width: calc(100% - 10px);
+        max-width: calc(100% - 10px);
+        min-height: calc(100% - 80px);
+    }
+
+    .table-content {
+        margin: 25px 5px 10px 5px;
+    }
+
+    .boton-cargar-container {
+        margin: 30px 5px 0px 0px;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px) {
+    .container {
+        padding: 40px 10px;
+        min-width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
+        min-height: calc(100% - 80px);
+    }
+
+    .table-content {
+        margin: 25px 5% 10px 5%;
+    }
+
+    .boton-cargar-container {
+        margin: 30px 5% 0px 0px;
+    }
+}

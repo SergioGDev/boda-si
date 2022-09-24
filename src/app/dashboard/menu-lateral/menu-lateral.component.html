@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="boton-menu" [ngClass]="{'abierto': !comprimido }"
+        (click)="comprimido = !comprimido">
+        <div class="linea"></div>
+    </div>
+
+    <div class="cortina" [ngClass]="{'abierto': !comprimido }"></div>
+
+    <div class="sidebar" [ngClass]="{ 'comprimido': comprimido }">
+
+        <ul>
+            <li *ngFor="let enlace of enlaces; let i = index"
+                [routerLink]="enlace.path"
+                routerLinkActive="hovered"
+                (click)="comprimido = !comprimido">
+                <div class="texto">
+                    <span class="title"> {{ enlace.text }} </span>
+                </div>
+                <div class="tapa-title"></div>
+            </li>
+        </ul>
+        
+        
+    </div>
+    
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>
+
+

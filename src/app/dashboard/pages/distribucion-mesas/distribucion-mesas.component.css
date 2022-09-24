@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+/* **********  TÍTULO SUPERIOR  ********** */
+.titulo-distribucion-mesas {
+    width: 100%;
+    height: 250px;
+    background-image: url(../../../../assets/foto-parador-3.webp);
+    background-position: center center;
+    background-size: cover;
+    font-family: 'Square Peg', cursive;
+}
+
+.titulo-distribucion-mesas .cortina {
+    width: 100%;
+    height: 100%;
+    background-color: #00000090;
+}
+
+.titulo-distribucion-mesas .cortina .texto-titulo {
+    color: white;
+    text-shadow: 2px 2px 3px #ffffff80;
+    font-size: 60pt;
+    width: 100%;
+    height: 100%;
+}
+
+.spinner-carga {
+    padding-top: 50px;
+}
+
+.fondo {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../../../../assets/foto-parador-1.jpeg);
+    background-size: cover;
+    background-position: center center;
+    z-index: -10;
+}
+
+.fondo .cortina {
+    width: 100%;
+    height: 100%;
+    background-color: #361D42C0;
+}
+
+.container-tarjetas {
+    padding-top: 50px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* **********  TARJETA  ********** */
+.tarjeta {
+    min-height: 450px;
+    margin: 15px;
+    box-shadow: 3px 4px 4px var(--tono5-transparente);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nombre-mesa {
+    margin-top: 250px;
+    padding-top: 150px;
+    height: 200px;
+    font-size: 30pt;
+    font-family: 'Square Peg', cursive;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: linear-gradient(to bottom, transparent, var(--transparente-2));
+}
+
+.tarjeta-frente, .tarjeta-reverso {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+}
+
+.tarjeta-frente {
+    background-size: cover;
+    background-position: center center;
+    z-index: 10;
+    transition-delay: 0.1s;
+}
+
+.tarjeta-reverso {
+    transform: rotateY(180deg);
+    z-index: -10;
+    background-image: url(../../../../assets/fondo-comic-vinnetas-color.jpeg);
+    background-size: cover;
+    background-position: center center;
+    transition-delay: 0.1s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.tarjeta-reverso-container, .listado {
+    background-color: #FFFFFFEE;
+    width: 70%;
+    height: 85%;
+}
+
+.content-tarjeta:hover .tarjeta {
+    transform: rotateY(180deg);
+    transition: 0.3s;
+}
+
+.content-tarjeta:hover .tarjeta .tarjeta-reverso {
+    z-index: 10;
+    transition-delay: 0.1s;
+}
+
+.content-tarjeta:hover .tarjeta .tarjeta-frente {
+    z-index: -10;
+    transition-delay: 0.1s;
+}
+
+.item-invitado {
+    color: black;
+    text-align: center;
+    font-size: 18pt;
+    margin: 8px 0px;
+    font-family: 'Avengers Font', 'Square Peg', cursive;
+}
+/* **********  TARJETA  ********** */
+
+.dialog-listado-invitados {
+    z-index: 30;
+    backdrop-filter: blur(10px);
+    background-color: var(--tono5-transparente);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.listado-invitados {
+    width: 400px;
+    position: fixed;
+    top: 5%;
+    bottom: 5%;
+    left: calc(50% - 200px);
+    background-image: url(../../../../assets/fondo-comic-vinnetas.jpeg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.listado-invitados>.listado {
+    position: relative;
+    overflow-y: scroll;
+    border-radius: 5px;
+    box-shadow: 3px 4px 4px var(--tono5-transparente);
+    padding-top: 100px;
+    padding-bottom: 30px;
+}
+
+.cerrar {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.invitado-item {
+    margin-top: 30px;
+    color: white;
+    font-family: 'Square Peg', cursive;
+    font-size: 30pt;
+    text-align: center;
+}
+
+.boton-cerrar-listado-invitados {
+    cursor: pointer;
+    margin-top: 50px;
+    font-size: 25pt;
+    text-align: center;
+    font-family: 'Square Peg', cursive;
+}
+
+.dialog-sopa-letras {
+    position: fixed;
+    top: calc(45% - 300px);
+    left: calc(50% - 300px);
+}
+
+.dialog-sopa-letras div {
+    z-index: 5;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px var(--tono5-transparente);
+}
+
+.dialog-sopa-letras div:first-child {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.botonera-cerrar-sopa-letras {
+    border-top-right-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+.botonera-cerrar-sopa-letras .boton {
+    margin: 5px;
+    padding: 5px 20px;
+    border: 2px solid var(--tono5-transparente);
+    background: var(--tono1);
+    box-shadow: 1px 2px 3px var(--tono1-transparente);
+    border-radius: 3px;
+    color: var(--tono7);
+    cursor: pointer;
+    font-size: 18pt;
+    font-family: 'Square Peg', cursive;
+}
+
+@media screen and (max-width: 595px){
+    .listado-invitados {
+        width: 400px;
+    }   
+
+    .titulo-distribucion-mesas {
+        height: 300px;
+    }
+    
+    .titulo-distribucion-mesas .cortina .texto-titulo {
+        font-size: 40pt;
+    }
+}
+
+@font-face {
+    font-family: 'Avengers Font';
+    src: url(../../../../assets/avengeance/AvengersFont.otf);
+}

@@ -1,0 +1,79 @@
+<div class="container">
+
+    <div class="titulo-distribucion-mesas">
+        <div class="cortina">
+            <div class="texto-titulo" fxLayoutAlign="center center">
+                Distribución de las mesas
+            </div>
+        </div>
+    </div>
+
+    <div fxLayoutAlign="center" class="spinner-carga" *ngIf="vMesas.length === 0">
+        <app-spinner-carga></app-spinner-carga>
+    </div>
+
+    <div fxLayout="row wrap" class="container-tarjetas" fxLayoutAlign="center"
+        *ngIf="vMesas.length > 0">
+
+        <div class="content-tarjeta" *ngFor="let mesa of vMesas"
+            fxFlex="22" fxFlex.md="30" fxFlex.sm="45" fxFlex.xs="90">
+            
+            <div class="tarjeta" (click)="abrirListadoInvitados(mesa)">
+                <!-- (click)="abrirListadoInvitados(mesa.heroeSchema!)" -->
+                <div class="tarjeta-frente"
+                    [ngStyle]="{'background-image':'url(' + mesa.heroeSchema!.pathImagen + ')'}">
+
+                    <div class="borde-superior-nombre"></div>
+                    <div class="nombre-mesa" fxLayoutAlign="center">
+                        Mesa {{ mesa.heroeSchema!.nombre }}
+                    </div>
+
+                </div>
+                <div class="tarjeta-reverso">
+
+                    <div class="tarjeta-reverso-container" fxLayout="column" fxLayoutAlign="center center">
+                        
+                        <div class="item-invitado" *ngFor="let invitado of mesa.vInvitados">
+                            {{ invitado }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        
+
+    </div>
+
+</div>
+
+<div class="fondo">
+    <div class="cortina"></div>
+</div>
+
+<div class="dialog-listado-invitados" *ngIf="mostrandoListado">
+    <div class="listado-invitados">
+        <div class="listado" fxLayout="column" fxLayoutAlign="center center">
+            <div class="invitado-item" *ngFor="let invitidado of vInvitadosMostrados">
+                {{ invitidado.nombre }}
+            </div>
+            <div class="boton-cerrar-listado-invitados" (click)="mostrandoListado = false">
+                Cerrar listado
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="dialog-sopa-letras" *ngIf="mostrandoSopaLetras">
+    <div>
+        <app-sopa-letras #sopaDeLetras [heroeSt]="heroeSr!" [vNombres]="vNombres"></app-sopa-letras>
+    </div>
+    <div class="botonera-cerrar-sopa-letras" fxLayoutAlign="center">
+        <div class="boton" (click)="cerrarSopaDeLetras()">
+            Cerrar sopa
+        </div>
+    </div>
+</div>

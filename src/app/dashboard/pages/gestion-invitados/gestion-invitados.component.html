@@ -1,0 +1,310 @@
+<div>
+
+    <div class="titulo-gestion-invitados">
+        <div class="cortina">
+            <div class="texto-titulo" fxLayoutAlign="center center">
+                Gestión de los invitados
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        
+            <div class="boton-cargar-container" fxLayout="row" fxLayoutAlign="end" 
+                fxLayoutGap="20px" fxLayoutGap.xs="10px"
+                fxLayout.xs="column">
+                <button class="boton-nuevo-invitado"
+                    (click)="dialogEliminarTodosLosInvitadosAbierto = true">
+                    Vaciar listado de invitados
+                </button>
+                <button class="boton-nuevo-invitado"
+                    (click)="abrirDialogNuevoInvitado()">
+                    Nuevo invitado
+                </button>
+                <app-load-csv (onLoadCsv)="cargarDatosCsv($event)"></app-load-csv>
+            </div>
+        
+            <div class="table-content" *ngIf="vInvitados.length > 0">
+                <table>
+                    <tbody>
+                        <tr *ngFor="let fila of vInvitadosVisible; let i = index" fxLayout="row">
+                            <td fxFlex="30" fxLayoutAlign="start center">
+                                {{ fila.nombre }}
+                            </td>
+                            <td fxFlex="50" fxLayoutAlign="start center"> 
+                                {{ fila.mesaSchema?.nombre }} 
+                                <span *ngIf="fila.mesaSchema?.heroeSchema">
+                                    &nbsp;({{ fila.mesaSchema?.heroeSchema?.nombre }})
+                                </span>
+                            </td>
+                            <td fxFlex="20" fxLayoutAlign="start center">
+                                <button mat-icon-button class="edit-button" (click)="editarInvitado(fila, i)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button class="delete-button" (click)="abrirDialogEliminarInvitado(fila, i)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+        
+                        <tr *ngIf="vInvitados.length === 0 && !cargandoInvitados">
+                            <td colspan="4">No hay invitados registrados</td>
+                        </tr>
+        
+                        <tr *ngIf="cargandoInvitados">
+                            <td colspan="4">Cargando datos de los invitados...</td>
+                        </tr>
+        
+        
+        
+                    </tbody>
+        
+                    <thead>
+                        <tr fxLayout="row">
+                            <th fxFlex="30" fxLayoutAlign="start center" (click)="ordenar('nombre')">
+                                Nombre
+                                <mat-icon *ngIf="ordenTablaInvitados === 'NOMBRE_ASC' || ordenTablaInvitados === 'NOMBRE_DESC'"
+                                    [ngClass]="{ 'ascendente': ordenTablaInvitados === 'NOMBRE_ASC', 'descendente': ordenTablaInvitados === 'NOMBRE_DESC' }"
+                                    class="icon-order">arrow_forward_ios</mat-icon>
+                            </th>
+                            <th fxFlex="50" fxLayoutAlign="start center" (click)="ordenar('mesa')">
+                                Mesa
+                                <mat-icon
+                                    *ngIf="ordenTablaInvitados === 'MESA_ASC' || ordenTablaInvitados === 'MESA_DESC'"
+                                    [ngClass]="{ 'ascendente': ordenTablaInvitados === 'MESA_ASC', 'descendente': ordenTablaInvitados === 'MESA_DESC' }"
+                                    class="icon-order">arrow_forward_ios</mat-icon>
+                            </th>
+                            <th fxFlex="20" fxLayoutAlign="start center">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="control-table" fxLayout="row" fxLayoutAlign="center" *ngIf="vInvitados.length > 0">
+                    <div class="control-table-button" *ngIf="page !== 0" 
+                        fxFlex="25" fxFlex.sm="40" fxFlex.xs="45" fxLayoutAlign="center center"
+                        (click)="paginaAnterior()">
+                        <mat-icon>chevron_left</mat-icon>
+                        Anterior
+                    </div>
+                    <div class="control-table-button" *ngIf="page < maxPaginas" 
+                        fxFlex="25" fxFlex.sm="40" fxFlex.xs="45" 
+                        fxLayoutAlign="center center"
+                        (click)="paginaSiguiente()">
+                        Siguiente
+                        <mat-icon>chevron_right</mat-icon>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <div class="boton-cargar-container" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+                <button class="boton-nuevo-invitado"
+                    (click)="abrirDialogNuevaMesa()">
+                    Nueva mesa
+                </button>
+            </div>
+        
+            <div class="table-content" *ngIf="vMesas.length > 0 && !cargandoInvitados">
+                <table>
+                    <tbody>
+                        <tr *ngFor="let fila of vMesas; let i = index" fxLayout="row">
+                            <td fxFlex="30" fxLayoutAlign="start center"> {{ fila.nombre }} </td>
+                            <td fxFlex="20" fxLayoutAlign="start center"> {{ fila.numeroInvitados ? fila.numeroInvitados : 0}} </td>
+                            <td fxFlex="30" fxLayoutAlign="start center"> {{ fila.heroeSchema?.nombre }} </td>
+                            <td fxFlex="20" fxLayoutAlign="start center">
+                                <button mat-icon-button class="edit-button" (click)="abrirDialogEditarMesa(fila)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+        
+                        <tr *ngIf="vInvitados.length === 0 && !cargandoInvitados">
+                            <td colspan="4">No hay mesas registradas</td>
+                        </tr>
+        
+        
+                    </tbody>
+        
+                    <thead>
+                        <tr fxLayout="row">
+                            <th fxFlex="30" fxLayoutAlign="start center" (click)="ordenarTablaMesas('nombre')">
+                                Nombre
+                                <mat-icon
+                                    *ngIf="ordenTablaMesas === 'NOMBRE_ASC' || ordenTablaMesas === 'NOMBRE_DESC'"
+                                    [ngClass]="{ 'ascendente': ordenTablaMesas === 'NOMBRE_ASC', 'descendente': ordenTablaMesas === 'NOMBRE_DESC' }"
+                                    class="icon-order">arrow_forward_ios</mat-icon>
+                            </th>
+                            <th fxFlex="20" fxLayoutAlign="start center" (click)="ordenarTablaMesas('numero')">
+                                Nº invitados
+                                <mat-icon
+                                    *ngIf="ordenTablaMesas === 'NUMERO_ASC' || ordenTablaMesas === 'NUMERO_DESC'"
+                                    [ngClass]="{ 'ascendente': ordenTablaMesas === 'NUMERO_ASC', 'descendente': ordenTablaMesas === 'NUMERO_DESC' }"
+                                    class="icon-order">arrow_forward_ios</mat-icon>
+                            </th>
+                            <th fxFlex="30" fxLayoutAlign="start center" (click)="ordenarTablaMesas('heroe')">
+                                Heroe
+                                <mat-icon
+                                    *ngIf="ordenTablaMesas === 'HEROE_ASC' || ordenTablaMesas === 'HEROE_DESC'"
+                                    [ngClass]="{ 'ascendente': ordenTablaMesas === 'HEROE_ASC', 'descendente': ordenTablaMesas === 'HEROE_DESC' }"
+                                    class="icon-order">arrow_forward_ios</mat-icon>
+                            </th>
+                            <th fxFlex="20" fxLayoutAlign="start center">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+        
+            </div>
+
+    </div>
+
+</div>
+
+<!-- <div class="dialog-edit-invitado" fxLayoutAlign="center center" *ngIf="dialogEditarInvitadoAbierto">
+    <div class="content-dialog">
+
+        <div fxLayoutAlign="end">
+            <button mat-icon-button (click)="cerrarDialogEditar()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="dialog-form" fxLayout="column">
+            <div class="title-dialog">
+                {{ creandoNuevoInvitado ? 'Nuevo invitado' : 'Editar datos del invitado' }}
+            </div>
+            <form [formGroup]="formEditarInvitado" (submit)="creandoNuevoInvitado ? submitGuardarNuevoInvitado() : submitEditarInvitado()">
+                <div>
+                    <mat-form-field fxFlex="100" appearance="fill">
+                        <mat-label>Nombre del invitado</mat-label>
+                        <input matInput placeholder='Por ejemplo "Manoli"' formControlName="nombre">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field fxFlex="100" appearance="fill">
+                        <mat-label>Selecciona la mesa</mat-label>
+                        <mat-select disableRipple formControlName="mesaSelect">
+                            <mat-option *ngFor="let mesa of vMesas" [value]="mesa">
+                                {{ mesa.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="botonera" type="submit" fxLayoutAlign="end">
+                    <button mat-raised-button color="primary">
+                        Guardar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div> -->
+<!-- 
+<div class="dialog-edit-mesa" fxLayoutAlign="center center" *ngIf="dialogEditarMesaAbierto">
+    <div class="content-dialog">
+
+        <div fxLayoutAlign="end">
+            <button mat-icon-button (click)="cerrarDialogEditarMesa()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="dialog-form" fxLayout="column">
+            <div class="title-dialog">
+                {{ creandoNuevaMesa ? 'Crear nueva mesa' :'Editar datos mesa'}}
+            </div>
+            <form [formGroup]="formEditarMesa" (submit)="creandoNuevaMesa ? submitCrearNuevaMesa() : submitEditarMesa()">
+                <div>
+                    <mat-form-field fxFlex="100" appearance="fill">
+                        <mat-label>Nombre de la mesa</mat-label>
+                        <input matInput placeholder='Por ejemplo "Mesa Nupcial"' formControlName="nombre">
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field fxFlex="100" appearance="fill">
+                        <mat-label>Selecciona el heroe</mat-label>
+                        <mat-select disableRipple formControlName="heroe">
+                            <mat-option *ngFor="let heroe of vHeroes" [value]="heroe">
+                                {{ heroe.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="botonera" fxLayoutAlign="end">
+                    <button mat-raised-button color="primary" type="submit">
+                        Guardar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="dialog-eliminar-invitado" fxLayoutAlign="center center" *ngIf="dialogEliminarInvitadoAbierto">
+    <div class="content-dialog">
+
+        <div fxLayoutAlign="end">
+            <button mat-icon-button (click)="dialogEliminarInvitadoAbierto = false">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="dialog-form" fxLayout="column">
+            <div class="title-dialog">
+                Eliminar invitado
+            </div>
+        
+            <div class="texto-dialog">
+                ¿Quieres eliminar los datos de este invitado? (Cuidado: No podrás recuperarlos)
+            </div>
+    
+            <div class="botonera" type="submit" fxLayoutAlign="end" fxLayoutGap="20px">
+                <button mat-raised-button color="primary">
+                    Cancelar
+                </button>
+                <button mat-raised-button color="warn" (click)="submitEliminarInvitado()">
+                    Eliminar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="dialog-eliminar-invitado" fxLayoutAlign="center center" *ngIf="dialogEliminarTodosLosInvitadosAbierto">
+    <div class="content-dialog">
+
+        <div fxLayoutAlign="end">
+            <button mat-icon-button (click)="dialogEliminarTodosLosInvitadosAbierto = false">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="dialog-form" fxLayout="column">
+            <div class="title-dialog">
+                Eliminar listado de invitados
+            </div>
+        
+            <div class="texto-dialog">
+                ¿Quieres eliminar el listado completo de invitados? (Cuidado: No podrás recuperarlos)
+            </div>
+    
+            <div class="botonera" type="submit" fxLayoutAlign="end" fxLayoutGap="20px">
+                <button mat-raised-button color="primary">
+                    Cancelar
+                </button>
+                <button mat-raised-button color="warn" (click)="submitEliminarListadoInvitados()">
+                    Eliminar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div> -->

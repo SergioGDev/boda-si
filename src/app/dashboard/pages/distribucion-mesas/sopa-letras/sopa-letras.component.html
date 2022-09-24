@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="fila" *ngFor="let fila of mapa"
+        fxLayout="row">
+        <!-- [style.backgroundColor]="getColorString(celda.color)" -->
+        <!-- [ngClass]="{
+            'borde-horizontal': celda.orientaciones.includes('H'), 
+            'borde-vertical': celda.orientaciones.includes('V'),
+            'sin-borde-horizontal': !celda.orientaciones.includes('H'), 
+            'sin-borde-vertical': !celda.orientaciones.includes('V'),
+            'es-heroe': celda.esHeroe } " -->
+
+            <!-- [style.backgroundColor]="getColorString(celda.color)" -->
+
+        <div class="celda" *ngFor="let celda of fila"
+            [ngClass]="{'es-heroe': celda.esHeroe}">
+            {{ celda.letra }}
+        </div>
+        
+    </div>
+
+    <div class="linea"
+        *ngFor="let nombre of vColocados"
+        [style.top.px]="(30 * nombre.letras[0].coordenada!.x)"
+        [style.left.px]="(30 * nombre.letras[0].coordenada!.y)"
+        [style.width.px]="(nombre.orientacion === 'V') ? 30 : (30 * nombre.letras.length)"
+        [style.height.px]="(nombre.orientacion === 'V') ? (30 * nombre.letras.length) : 30"></div>
+
+</div>

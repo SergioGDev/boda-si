@@ -1,0 +1,222 @@
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 500px;
+    background: var(--tono1);
+    color: var(--tono6);
+    box-shadow: -5px 0px 10px 10px var(--tono1);
+    font-family: 'Square Peg', cursive;
+    transition: var(--tr-menu);
+    transition-timing-function: ease;
+    z-index: 50;
+}
+
+.sidebar.comprimido {
+    width: 0;
+    box-shadow: -5px 0px 10px 10px transparent;
+    transition: var(--tr-menu);
+    transition-delay: var(--tr-texto-items);
+    transition-timing-function: ease;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-left: 80px;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-top: 70px;
+    font-size: 38pt;
+    color: var(--tono6);
+    cursor: pointer;
+    position: relative;
+    text-shadow: 1px 1px 3px var(--tono5);
+    transition: 0.2s;
+}
+
+.sidebar ul li:hover {
+    padding-left: 15px;
+    text-shadow: -14px 1px 10px var(--tono5);
+    transition: 0.2s;
+    transition-property: padding-left,text-shadow;
+}
+
+.sidebar ul li:first-child {
+    margin-top: 100px;
+}
+
+/* Animación texto menú */
+.sidebar ul li .texto {
+    z-index: 5;
+    opacity: 1;
+    transform: translateY(0px);
+    transition: var(--tr-texto-items);
+    transition-delay: var(--trd-texto-items);
+    transition-timing-function: ease;
+    transition-property: opacity,transform;
+}
+
+.sidebar.comprimido ul li .texto {
+    z-index: 5;
+    opacity: 0;
+    font-size: 0pt;
+    transform: translateY(45px);
+    transition: opacity var(--tr-texto-items) ease 0s, 
+        transform var(--tr-texto-items) ease 0s, 
+        font-size var(--tr-texto-items) ease var(--trd-texto-items);
+}
+
+.sidebar ul li .tapa-title {
+    z-index: 10;
+    width: 100%;
+    background: var(--tono1);
+    height: 0px;
+    position: absolute;
+    top: 50px;
+    z-index: 10;
+    transition: var(--tr-texto-items);
+    transition-delay: var(--trd-texto-items);
+    transition-timing-function: ease;
+    transition-property: height;
+}
+
+.sidebar.comprimido ul li .tapa-title {
+    z-index: 10;
+    width: 100%;
+    background: var(--tono1);
+    height: 100px;
+    position: absolute;
+    top: 50px;
+    z-index: 10;
+    transition: var(--tr-texto-items);
+    transition-timing-function: ease;
+    transition-property: height;
+}
+
+
+.cortina {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0px;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: var(--tono5-transparente);
+    transition: var(--tr-menu);
+    transition-delay: var(--tr-texto-items);
+    transition-property: width;
+    z-index: 49;
+}
+
+.cortina.abierto {
+    width: 100%;
+    backdrop-filter: blur(5px);
+    transition: var(--tr-menu);
+    transition-property: width;
+}
+
+/* Botón de abertura del menú */
+.boton-menu {
+    color: var(--tono1);
+    padding: 24px 20px 12px 20px;
+    width: 26px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: var(--tono3-transparente);
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    top: calc(50% - 25px);
+    transition: var(--tr-menu);
+    transition-delay: var(--tr-texto-items);
+    transition-timing-function: ease;
+    z-index: 51;
+}
+
+.boton-menu.abierto {
+    transition: var(--tr-menu);
+    transition-timing-function: ease;
+}
+
+.boton-menu .linea,
+.boton-menu .linea::after,
+.boton-menu .linea::before {
+    display: block;
+    width: 100%;
+    border-top: 2px solid var(--tono1);
+    margin: 5px 0px;
+    transition: 0.4s;
+    transition-timing-function: ease;
+}
+
+.boton-menu .linea {
+    transition: 0.4s;
+    transition-delay: var(--trd-texto-items);
+    transition-timing-function: ease;
+}
+
+.boton-menu .linea::before {
+    content: '';
+    position: relative;
+    border-top: 2px solid var(--tono1);
+    bottom: 15px;
+    transition: 0.4s;
+    transition-delay: var(--trd-texto-items);
+    transition-timing-function: ease;
+}
+
+.boton-menu .linea::after {
+    content: '';
+    position: relative;
+    border-top: 2px solid var(--tono1);
+    bottom: 6px;
+    transition: 0.4s;
+    transition-delay: var(--trd-texto-items);
+    transition-timing-function: ease;
+}
+
+.boton-menu.abierto .linea::before {
+    transform: rotate(45deg);
+    bottom: 6px;
+    border-top: 2px solid var(--tono6);
+    transition: 0.4s;
+    transition-timing-function: ease;
+}
+
+.boton-menu.abierto .linea::after {
+    transform: rotate(-45deg);
+    bottom: 13px;
+    border-top: 2px solid var(--tono6);
+    transition: 0.4s;
+    transition-timing-function: ease;
+}
+
+.boton-menu.abierto .linea {
+    border-top: 2px solid transparent;
+    transition: 0.4s;
+    transition-timing-function: ease;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.container {
+    height: 100%;
+}
+
+@media screen and (max-width: 599px) {
+
+    .sidebar {
+        width: 100%;
+    }
+}
