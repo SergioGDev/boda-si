@@ -11,6 +11,7 @@ export const environment = {
     measurementId: 'G-WWW50ZSD5Z',
   },
   production: false,
-  backendUrl: 'https://sergiogdev.com/boda-si',
+  backendUrl: 'https://boda-si-backend-production.up.railway.app',
+  // backendUrl: 'https://sergiogdev.com/boda-si',
   mapboxToken: 'pk.eyJ1Ijoic2VyZ2lvZ2RldiIsImEiOiJja3J2eW9zcGIwYmR2MnVxamJ3MGk0djRiIn0.R1ANSOBYyCstt-QxZcI5pg'
 };
