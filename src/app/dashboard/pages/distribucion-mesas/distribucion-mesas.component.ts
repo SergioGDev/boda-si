@@ -12,7 +12,7 @@ import { SopaLetrasService } from '../../../services/sopa-letras.service';
 @Component({
   selector: 'app-distribucion-mesas',
   templateUrl: './distribucion-mesas.component.html',
-  styleUrls: ['./distribucion-mesas.component.css']
+  styleUrls: ['./distribucion-mesas.component.css', './card.component.css']
 })
 export class DistribucionMesasComponent implements OnInit {
 
