@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://boda-si-backend-production.up.railway.app",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

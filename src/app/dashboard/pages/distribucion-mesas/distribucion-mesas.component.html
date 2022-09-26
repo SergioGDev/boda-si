@@ -18,7 +18,8 @@
         <div class="content-tarjeta" *ngFor="let mesa of vMesas"
             fxFlex="22" fxFlex.md="30" fxFlex.sm="45" fxFlex.xs="90">
             
-            <div class="tarjeta" (click)="abrirListadoInvitados(mesa)">
+            <div class="tarjeta">
+                <!--(click)="abrirListadoInvitados(mesa)"-->
                 <!-- (click)="abrirListadoInvitados(mesa.heroeSchema!)" -->
                 <div class="tarjeta-frente"
                     [ngStyle]="{'background-image':'url(' + mesa.heroeSchema!.pathImagen + ')'}">
