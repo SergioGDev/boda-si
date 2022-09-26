@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MesaSchema } from '../interfaces/datos.interfaces';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,7 +21,16 @@ export class MesasService {
   }
 
   guardarMesas(vMesas: MesaSchema[]): Observable<any> {
-    return this.http.post<any>(`${environment.backendUrl}/${this.urlMesa}`, vMesas);
+
+    const httpOptions = {
+ 	 	  headers: new HttpHeaders()
+	  }
+
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    return this.http.post<any>(`${environment.backendUrl}/${this.urlMesa}`, vMesas, httpOptions);
   }
 
   obtenerListadoMesas(): Observable<any> {

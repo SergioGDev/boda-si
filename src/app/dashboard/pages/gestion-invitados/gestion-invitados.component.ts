@@ -67,7 +67,6 @@ export class GestionInvitadosComponent implements OnInit {
         return this.mesasService.obtenerListadoMesas();
       }),
       switchMap( resp => {
-        console.log(resp)
         this.vMesas = resp.data;
         return this.heroesService.obtenerListadoHeroes();
       })
@@ -219,9 +218,14 @@ export class GestionInvitadosComponent implements OnInit {
         return this.invitadosService.guardarInvitados(vInvitadosCsv);
       })
     ).subscribe( resp => {
+      console.log(resp);
       this.vInvitados = this.vInvitados.concat(resp.data);
       this.vInvitados.forEach( invitado => invitado.mesaSchema = this.vMesas.find( mesa => mesa._id === invitado.mesa ) )
       this.asignarVInvitados();
+      this.cargandoInvitados = false;
+    },
+    error => {
+      console.log(error);
       this.cargandoInvitados = false;
     })
 

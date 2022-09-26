@@ -29,7 +29,15 @@ export class InvitadosService {
   }
 
   guardarInvitados(vInvitados: InvitadoSchema[]): Observable<any> {
-    return this.http.post<any>(`${environment.backendUrl}/${this.urlInvitado}/`, vInvitados);
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    return this.http.post<any>(`${environment.backendUrl}/${this.urlInvitado}/`, vInvitados, httpOptions);
   }
 
   actualizarInvitado(datosInvitado: InvitadoSchema, id: string) {
@@ -42,12 +50,12 @@ export class InvitadosService {
 
   eliminarTodosLosInvitados(): Observable<any> {
     return this.mesasService.eliminarTodasLasMesas().pipe(
-      switchMap( () => this.http.delete<any>(`${environment.backendUrl}/${this.urlInvitados}`))
+      switchMap(() => this.http.delete<any>(`${environment.backendUrl}/${this.urlInvitados}`))
     );
   }
 
   cambiarNombreCategoria(nombreAntiguo: string, nombreNuevo: string): Observable<any> {
     return this.http.post<any>(`${environment.backendUrl}/${this.urlActualizarCategoria}`,
-      { 'nombreAntiguo': nombreAntiguo, 'nombreNuevo': nombreNuevo } );
+      { 'nombreAntiguo': nombreAntiguo, 'nombreNuevo': nombreNuevo });
   }
 }
