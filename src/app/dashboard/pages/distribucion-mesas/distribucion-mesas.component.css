@@ -47,97 +47,16 @@
     background-color: #361D42C0;
 }
 
+.container-tarjetas-grande {
+    width: 100%;
+}
+
 .container-tarjetas {
     padding-top: 50px;
-    width: 100%;
     max-width: 1400px;
+    width: 100%;
+    margin: auto;
 }
-
-/* **********  TARJETA  ********** */
-.tarjeta {
-    min-height: 550px;
-    margin: 15px;
-    box-shadow: 3px 4px 4px var(--tono5-transparente);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    position: relative;
-}
-
-.nombre-mesa {
-    margin-top: 350px;
-    padding-top: 150px;
-    height: 200px;
-    font-size: 30pt;
-    font-family: 'Square Peg', cursive;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: linear-gradient(to bottom, transparent, var(--transparente-2));
-}
-
-.tarjeta-frente, .tarjeta-reverso {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-}
-
-.tarjeta-frente {
-    background-size: cover;
-    background-position: center center;
-    z-index: 10;
-    transition-delay: 0.1s;
-}
-
-.tarjeta-reverso {
-    transform: rotateY(180deg);
-    z-index: -10;
-    background-image: url(../../../../assets/fondo-comic-vinnetas-color.jpeg);
-    background-size: cover;
-    background-position: center center;
-    transition-delay: 0.1s;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-}
-
-.tarjeta-reverso-container, .listado {
-    background-color: #FFFFFFEE;
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px #00000080;
-    width: 80%;
-    height: 90%;
-}
-
-.content-tarjeta:hover .tarjeta {
-    transform: rotateY(180deg);
-    transition: 0.3s;
-}
-
-.content-tarjeta:hover .tarjeta .tarjeta-reverso {
-    z-index: 10;
-    transition-delay: 0.1s;
-}
-
-.content-tarjeta:hover .tarjeta .tarjeta-frente {
-    z-index: -10;
-    transition-delay: 0.1s;
-}
-
-.item-invitado {
-    color: black;
-    text-align: center;
-    font-size: 14pt;
-    margin: 8px 0px;
-    font-family: 'Press Start 2P', cursive;
-    /* font-family: 'Avengers Font', 'Square Peg', cursive; */
-}
-/* **********  TARJETA  ********** */
 
 .dialog-listado-invitados {
     z-index: 30;
@@ -245,4 +164,9 @@
 @font-face {
     font-family: 'Avengers Font';
     src: url(../../../../assets/avengeance/AvengersFont.otf);
+}
+
+@font-face {
+    font-family: 'Comic Book Font';
+    src: url(../../../../assets/comicbook/ComicBook.otf);
 }

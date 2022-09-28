@@ -14,6 +14,8 @@ import { LoadCsvComponent } from './components/load-csv/load-csv.component';
 import { MaterialModule } from '../material/material.module';
 import { SopaLetrasComponent } from './pages/distribucion-mesas/sopa-letras/sopa-letras.component';
 import { SpinnerCargaComponent } from './components/spinner-carga/spinner-carga.component';
+import { InputBusquedaComponent } from './pages/distribucion-mesas/input-busqueda/input-busqueda.component';
+import { TarjetaComponent } from './pages/distribucion-mesas/tarjeta/tarjeta.component';
 
 
 
@@ -26,7 +28,9 @@ import { SpinnerCargaComponent } from './components/spinner-carga/spinner-carga.
     MenuLateralComponent,
     LoadCsvComponent,
     SopaLetrasComponent,
-    SpinnerCargaComponent
+    SpinnerCargaComponent,
+    InputBusquedaComponent,
+    TarjetaComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +38,8 @@ import { SpinnerCargaComponent } from './components/spinner-carga/spinner-carga.
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

@@ -12,39 +12,21 @@
         <app-spinner-carga></app-spinner-carga>
     </div>
 
-    <div fxLayout="row wrap" class="container-tarjetas" fxLayoutAlign="center"
-        *ngIf="vMesas.length > 0">
+    <div *ngIf="vMesas.length > 0">
+        <app-input-busqueda (eventoBusqueda)="aplicarBusqueda($event)"></app-input-busqueda>
+    </div>
 
-        <div class="content-tarjeta" *ngFor="let mesa of vMesas"
-            fxFlex="30" fxFlex.sm="45" fxFlex.xs="90">
-            
-            <div class="tarjeta">
-                <!--(click)="abrirListadoInvitados(mesa)"-->
-                <!-- (click)="abrirListadoInvitados(mesa.heroeSchema!)" -->
-                <div class="tarjeta-frente"
-                    [ngStyle]="{'background-image':'url(' + mesa.heroeSchema!.pathImagen + ')'}">
+    <div fxLayout="row wrap" class="container-tarjetas-grande" fxLayoutAlign="center" *ngIf="vMesas.length > 0">
 
-                    <div class="borde-superior-nombre"></div>
-                    <div class="nombre-mesa" fxLayoutAlign="center">
-                        Mesa {{ mesa.heroeSchema!.nombre }}
-                    </div>
+        <div class="container-tarjetas" fxLayout="row wrap" fxLayoutAlign="center">
 
-                </div>
-                <div class="tarjeta-reverso">
-
-                    <div class="tarjeta-reverso-container" fxLayout="column" fxLayoutAlign="center center">
-                        
-                        <div class="item-invitado" *ngFor="let invitado of mesa.vInvitados">
-                            {{ invitado }}
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="content-tarjeta" *ngFor="let mesa of vMesasMostradas" fxFlex="30" fxFlex.sm="45" fxFlex.xs="90">
+                <app-tarjeta [mesa]="mesa"></app-tarjeta>
             </div>
+
         </div>
-        
+
+
 
     </div>
 

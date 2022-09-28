@@ -20,6 +20,8 @@ export class DistribucionMesasComponent implements OnInit {
   vMesas: MesaSchema[] = [];
   vHeroes: HeroeSchema[] = [];
 
+  vMesasMostradas: MesaSchema[] = [];
+
   mostrandoListado: boolean = false;
   vInvitadosMostrados: InvitadoSchema[] = [];
   vNombres: string[] = [];
@@ -30,6 +32,20 @@ export class DistribucionMesasComponent implements OnInit {
   mostrandoSopaLetras: boolean = false;
 
   anchoPantalla: number = 0;
+  // acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
+  acentos = [
+      { conTilde: 'á', sinTilde: 'a' },
+      { conTilde: 'é', sinTilde: 'e' },
+      { conTilde: 'í', sinTilde: 'i' },
+      { conTilde: 'ó', sinTilde: 'o' },
+      { conTilde: 'ú', sinTilde: 'u' },
+      { conTilde: 'Á', sinTilde: 'A' },
+      { conTilde: 'É', sinTilde: 'E' },
+      { conTilde: 'Í', sinTilde: 'I' },
+      { conTilde: 'Ó', sinTilde: 'O' },
+      { conTilde: 'Ú', sinTilde: 'U' },
+  ]
+	
 
   @ViewChild('sopaDeLetras') sopaLetras!: SopaLetrasComponent;
 
@@ -67,7 +83,9 @@ export class DistribucionMesasComponent implements OnInit {
           this.vMesas.find( mesa => mesa._id === invitado.mesa )?.vInvitados?.push(invitado.nombre);
         })
 
-        console.log(this.vMesas)
+        this.vMesasMostradas = this.vMesas;
+        console.log(this.vMesas);
+
         this.cargandoDatos = false;
       }
     )
@@ -122,5 +140,38 @@ export class DistribucionMesasComponent implements OnInit {
     this.anchoPantalla = event.target.innerWidth;
   } 
 
+  aplicarBusqueda(busqueda: string) {
+    
+    this.vMesasMostradas = this.vMesas.filter( mesa => {
+      const vAux = mesa.vInvitados!.map( invitado => invitado.toLowerCase());
+      return vAux.some( invitado => this.cumpleCriteriosBusqueda(invitado, busqueda));
+    });
+  }
+
+  cumpleCriteriosBusqueda(invitado: string, busqueda: string) {
+    switch (invitado) {
+      case 'rubia':
+        const vRubia: string[] = ['m', 'mi', 'mir', 'miri', 'miria', 'miriam'];
+        return vRubia.includes(busqueda.toLowerCase()); 
+      
+      case 'busti':
+        const vBusti: string[] = ['b', 'be', 'bea', 'beat', 'beatr', 'beatri', 'beatriz']
+        return vBusti.includes(busqueda.toLowerCase());
+
+      default:
+        return invitado.toLowerCase().includes(busqueda.toLowerCase()) || this.coincideSinTildes(invitado, busqueda);
+    }
+  }
+
+  coincideSinTildes(invitado: string, busqueda: string) {
+    var invSinTildes: string = invitado;
+    var busquedaSinTildes: string = busqueda;
+
+    this.acentos.forEach( item => {
+      invSinTildes = invSinTildes.replace( item.conTilde, item.sinTilde );
+      busquedaSinTildes = busquedaSinTildes.replace( item.conTilde, item.sinTilde );
+    })
+    return invSinTildes.toLowerCase().includes(busquedaSinTildes.toLowerCase());
+  }
 
 }

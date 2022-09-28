@@ -1,0 +1,18 @@
+<div class="container" fxLayoutAlign="center">
+
+    <input class="c-checkbox" type="checkbox" id="checkbox"
+        (click)="clickCheck()">
+    <div class="c-formContainer">
+        <form class="c-form" action="" [formGroup]="formBusqueda">
+            <input class="c-form__input" placeholder="Escribe tu nombre..." type="text"
+                #inputBusqueda
+                formControlName="busqueda"
+                (keyup)="emitirBusqueda()">
+            <!-- <label class="c-form__buttonLabel" for="checkbox">
+                <button class="c-form__button" type="button">Buscar</button>
+            </label> -->
+            <label class="c-form__toggle" for="checkbox" data-title="¿Dónde me siento?"></label>
+        </form>
+    </div>
+
+</div>

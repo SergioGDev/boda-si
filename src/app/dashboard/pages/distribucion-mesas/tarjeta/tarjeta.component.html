@@ -1,0 +1,53 @@
+<!-- <div class="tarjeta">
+    <div class="tarjeta-frente"
+        [ngStyle]="{'background-image':'url(' + mesa.heroeSchema!.pathImagen + ')'}">
+
+        <div class="borde-superior-nombre"></div>
+        <div class="nombre-mesa" fxLayoutAlign="center">
+            Mesa {{ mesa.heroeSchema!.nombre }}
+        </div>
+
+    </div>
+    <div class="tarjeta-reverso">
+
+        <div class="tarjeta-reverso-container" fxLayout="column" fxLayoutAlign="center center">
+
+            <div class="item-invitado" *ngFor="let invitado of mesa.vInvitados">
+                {{ invitado }}
+            </div>
+
+        </div>
+
+    </div>
+
+</div> -->
+
+<div class="card">
+
+    <div class="content" (click)="verReverso = !verReverso"
+        [ngClass]="{ 'checked': verReverso }">
+        
+        <div class="front"
+            [ngStyle]="{'background-image':'url(' + mesa.heroeSchema!.pathImagen + ')'}">
+            
+            <div class="borde-superior-nombre"></div>
+            <div class="nombre-mesa" fxLayoutAlign="center">
+                Mesa {{ mesa.heroeSchema!.nombre }}
+            </div>
+    
+        </div>
+    
+        <div class="back">
+    
+            <div class="tarjeta-reverso-container" fxLayout="column" fxLayoutAlign="center center">
+    
+                <div class="item-invitado" *ngFor="let invitado of mesa.vInvitados">
+                    {{ invitado }}
+                </div>
+    
+            </div>
+    
+        </div>
+
+    </div>
+</div>

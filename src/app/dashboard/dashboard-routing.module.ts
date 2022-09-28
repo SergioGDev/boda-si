@@ -13,7 +13,7 @@ const routes: Routes = [
         children: [
             // { path: 'galeria', component: GaleriaComponent },
             { path: 'distribucion-mesas', component: DistribucionMesasComponent },
-            // { path: 'gestion-invitados', component: GestionInvitadosComponent },
+            { path: 'gestion-invitados', component: GestionInvitadosComponent },
             { path: 'ubicaciones', component: UbicacionesComponent },
             { path: '**', redirectTo: 'ubicaciones' }
             //{ path: 'path/:routeParam', component: MyComponent },

@@ -125,17 +125,17 @@
     color: var(--tono1);
     padding: 24px 20px 12px 20px;
     width: 26px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 5px;
     background-color: var(--tono3-transparente);
     cursor: pointer;
     position: fixed;
-    right: 0;
-    top: calc(50% - 25px);
+    left: 0;
+    top: 0;
     transition: var(--tr-menu);
     transition-delay: var(--tr-texto-items);
     transition-timing-function: ease;
     z-index: 51;
+    box-shadow: 1px 1px 3px var(--tono3-transparente);
 }
 
 .boton-menu.abierto {
