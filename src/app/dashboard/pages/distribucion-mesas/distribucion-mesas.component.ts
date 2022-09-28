@@ -32,7 +32,6 @@ export class DistribucionMesasComponent implements OnInit {
   mostrandoSopaLetras: boolean = false;
 
   anchoPantalla: number = 0;
-  // acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
   acentos = [
       { conTilde: 'á', sinTilde: 'a' },
       { conTilde: 'é', sinTilde: 'e' },
@@ -152,11 +151,15 @@ export class DistribucionMesasComponent implements OnInit {
     switch (invitado) {
       case 'rubia':
         const vRubia: string[] = ['m', 'mi', 'mir', 'miri', 'miria', 'miriam'];
-        return vRubia.includes(busqueda.toLowerCase()); 
+        return vRubia.includes(busqueda.toLowerCase())
+        || invitado.toLowerCase().includes(busqueda.toLowerCase()) 
+        || this.coincideSinTildes(invitado, busqueda); 
       
       case 'busti':
         const vBusti: string[] = ['b', 'be', 'bea', 'beat', 'beatr', 'beatri', 'beatriz']
-        return vBusti.includes(busqueda.toLowerCase());
+        return vBusti.includes(busqueda.toLowerCase()) 
+          || invitado.toLowerCase().includes(busqueda.toLowerCase()) 
+          || this.coincideSinTildes(invitado, busqueda);
 
       default:
         return invitado.toLowerCase().includes(busqueda.toLowerCase()) || this.coincideSinTildes(invitado, busqueda);

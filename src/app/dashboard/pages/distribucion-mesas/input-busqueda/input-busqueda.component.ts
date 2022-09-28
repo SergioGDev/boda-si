@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-input-busqueda',
@@ -29,5 +31,8 @@ export class InputBusquedaComponent implements OnInit {
 
   clickCheck() {
     console.log(this.inputBusqueda)
+    of('').pipe(
+      delay(250)
+    ).subscribe( () => this.inputBusqueda.nativeElement.focus());
   }
 }
