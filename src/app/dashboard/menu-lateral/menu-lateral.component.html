@@ -1,13 +1,16 @@
 <div class="container">
 
     <div class="boton-menu" [ngClass]="{'abierto': !comprimido }"
-        (click)="comprimido = !comprimido">
+        (click)="comprimido = !comprimido"
+        fxShow="false" fxShow.xs="true" fxShow.sm="true">
         <div class="linea"></div>
     </div>
 
-    <div class="cortina" [ngClass]="{'abierto': !comprimido }"></div>
+    <div class="cortina" [ngClass]="{'abierto': !comprimido }"
+        fxShow="false" fxShow.xs="true" fxShow.sm="true"></div>
 
-    <div class="sidebar" [ngClass]="{ 'comprimido': comprimido }">
+    <div class="sidebar" [ngClass]="{ 'comprimido': comprimido }"
+        fxShow="false" fxShow.xs="true" fxShow.sm="true">
 
         <ul>
             <li *ngFor="let enlace of enlaces; let i = index"
@@ -21,7 +24,20 @@
             </li>
         </ul>
         
-        
+    </div>
+
+    <div class="toolbar" fxShow="true" fxShow.xs="false" fxShow.sm="false">
+
+        <ul>
+            <li *ngFor="let enlace of enlaces"
+                [routerLink]="enlace.path"
+                routerLinkActive="hovered">
+
+                <div> {{ enlace.text }} </div>
+
+            </li>
+        </ul>
+
     </div>
     
     <div class="content">

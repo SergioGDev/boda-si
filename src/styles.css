@@ -14,6 +14,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --tono4: #FF8FB1;
     --tono5: #ffbcd0;
     --tono6: #FCE2DB;
+    --tono6-tb-item: #fce2dbc0;
     --tono7: #fbefeb;
     --tono8: #fffaf8;
     --tono5-transparente: #ffbcd01c;
@@ -25,4 +26,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     --transparente-1: #ffffff80;
     --transparente-2: #fffffff0;
+}
+
+
+@font-face {
+    font-family: 'Comic Book Font';
+    src: url(assets/comicbook/ComicBook.otf);
 }

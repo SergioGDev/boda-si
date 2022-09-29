@@ -83,8 +83,6 @@ export class DistribucionMesasComponent implements OnInit {
         })
 
         this.vMesasMostradas = this.vMesas;
-        console.log(this.vMesas);
-
         this.cargandoDatos = false;
       }
     )
