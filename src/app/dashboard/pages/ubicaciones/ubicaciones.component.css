@@ -4,7 +4,7 @@
     background-image: url(../../../../assets/foto-parador-2.jpeg);
     background-position: center center;
     background-size: cover;
-    font-family: 'Square Peg', cursive;
+    font-family: 'Comic Book Font', cursive;
 }
 
 .titulo-ubicaciones .cortina {
@@ -16,13 +16,21 @@
 .titulo-ubicaciones .cortina .texto-titulo {
     color: white;
     text-shadow: 2px 2px 3px #ffffff80;
-    font-size: 60pt;
+    font-size: 50pt;
     width: 100%;
     height: 100%;
 }
 
-.ubicacion-iglesia, .ubicacion-parador, .descripcion {
+.ubicacion-iglesia .ubicacion-parador {
     height: 500px;
+}
+
+.descripcion.iglesia {
+    height: 365px;
+}
+
+.descripcion.parador{
+    height: 300px;
 }
 
 #mapaIglesia, #mapaParador, #mapaParador2 {
@@ -47,8 +55,8 @@
 }
 
 .descripcion .cortina {
-    font-family: 'Dancing Script', cursive;
-    font-size: 20pt;
+    font-family: 'Comic Book Font', cursive;
+    font-size: 18pt;
     background-color: #FFFFFFC0;
     width: 100%;
     height: 100%;
@@ -78,6 +86,224 @@
     transition: 0.3s;
 }
 
+/**********************************************/
+/*                  HOJA COMIC                */
+/**********************************************/
+.container-hoja-comic {
+    background-image: url(../../../../assets/fondo-comic-vinnetas.jpeg);
+}
+
+.cortina-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffffF0;
+}
+
+.hoja-comic {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 450px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: #fffdf5;
+    box-shadow: 2px 2px 10px #000000;
+}
+
+/* Primera fila */
+.primera-fila {
+    height: 400px;
+    width: calc(100% - 60px);
+    margin: 30px;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.primera-fila .vinneta-uno,
+.primera-fila .vinneta-uno .contenido {
+    clip-path: polygon(0 0, 100% 0, 100% 85.4%, 0 100%);
+}
+
+.primera-fila .vinneta-uno {
+    background-color: black;
+    flex-grow: 6;
+    position: relative;
+}
+
+.primera-fila .vinneta-uno .contenido {
+    position:absolute;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+}
+
+.primera-fila .vinneta-dos,
+.primera-fila .vinneta-dos .contenido {
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 84.5%);
+}
+
+.primera-fila .vinneta-dos {
+    background-color: black;
+    flex-grow: 4;
+    position: relative;
+
+}
+
+.primera-fila .vinneta-dos .contenido {
+    position:absolute;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+}
+
+/* Segunda fila */
+.segunda-fila {
+    height: 350px;
+    margin: -100px 30px 30px 30px;
+    width: calc(100% - 60px);
+    clip-path: polygon(0 100px, 100% 0, 100% 100%, 0 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.segunda-fila .vinneta-uno,
+.segunda-fila .vinneta-uno .contenido {
+    clip-path: polygon(0 100px, 100% 9%, 100% 100%, 0 100%);
+}
+
+.segunda-fila .vinneta-uno {
+    background-color: black;
+    flex-grow: 7;
+    position: relative;
+}
+
+.segunda-fila .vinneta-uno .contenido {
+    position:absolute;
+    background-image: url(../../../../assets/thanos-infinity-war.jpeg);
+    background-position: center center;
+    background-size: cover;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+}
+
+.segunda-fila .vinneta-uno .bocadillo {
+    position: absolute;
+    top: 100px;
+    left: 15px;
+    background-color: white;
+    width: 230px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Comic Book Font', cursive;
+}
+
+.segunda-fila .vinneta-uno .bocadillo div:first-child {
+    font-size: 12pt;
+}
+
+.segunda-fila .vinneta-uno .bocadillo div:last-child {
+    font-size: 18pt;
+}
+
+.segunda-fila .vinneta-uno .bocadillo:before {
+    content: '';
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    bottom: -7px;
+    right: -6px;
+    transform: rotate(120deg);
+    background: white;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    width: 20px;
+    height: 50px;
+}
+
+.segunda-fila .vinneta-dos,
+.segunda-fila .vinneta-dos .contenido {
+    clip-path: polygon(0 8.5%, 100% 0%, 100% 100%, 0 100%);
+}
+
+.segunda-fila .vinneta-dos {
+    background-color: black;
+    flex-grow: 3;
+    position: relative;
+}
+
+.segunda-fila .vinneta-dos .contenido {
+    position:absolute;
+    background-image: url(../../../../assets/thanos-snap.jpeg);
+    background-position: center bottom;
+    background-size: cover;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+}
+
+/* Tercera fila */
+.tercera-fila {
+    height: 75px;
+    text-align: center;
+    margin: 0px 30px 30px 30px;
+    width: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tercera-fila .contenido {
+    font-size: 30pt;
+    font-family: 'Comic Book Font', cursive;
+}
+
+/* Cuarta fila */
+.cuarta-fila {
+    height: 300px;
+    width: 100%;
+    margin: 0px 30px 30px 30px;
+    width: calc(100% - 60px);
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuarta-fila .vinneta-uno {
+    flex-grow: 4;
+    border: 2px solid black;
+    height: 100%;
+}
+
+.cuarta-fila .vinneta-dos {
+    flex-grow: 6;
+    border: 2px solid black;
+    height: 100%;
+
+}
+
+/**********************************************/
+
 @media (max-width: 595px) {
 
     .ubicacion-iglesia, .ubicacion-parador {
@@ -89,6 +315,8 @@
     }
     
     .titulo-ubicaciones .cortina .texto-titulo {
-        font-size: 40pt;
+        font-size: 30pt;
+        text-align: center;
+        line-height: 40px;
     }
 }
